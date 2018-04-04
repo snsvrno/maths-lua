@@ -1,0 +1,8 @@
+name = "maths"
+user = "snsvrno"
+author = "snsvrno <snsvrno@tuta.io>"
+version = "0.1.0"
+
+[requires]
+line = "src.line"
+number = "src.number"
