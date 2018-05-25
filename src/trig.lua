@@ -1,7 +1,7 @@
 local TRIG = { }
 
 -- magnitude and direction, angle returned in radians
-function TRIG:magAndDirectioN(p1x,p1y,p2x,p2y)
+function TRIG.magAndDirection(p1x,p1y,p2x,p2y)
   local dx = p2x-p1x
   local dy = p2y-p1y
 
@@ -18,11 +18,11 @@ function TRIG:magAndDirectioN(p1x,p1y,p2x,p2y)
     return mag,angle + math.pi
   elseif dy < 0 and dx < 0 then
     return mag,angle + 2*math.pi
-  else return mag,angle + 3/2*math.pi
+  else return mag,angle + 3/2*math.pi end
 end
 
 -- rescales the angle to be between 0 and 2PI
-function TRIG:normalizeAngle(angle)
+function TRIG.normalizeAngle(angle)
   if angle < 0 then
     while angle < 0 do angle = angle + 2*math.pi end
     return angle
