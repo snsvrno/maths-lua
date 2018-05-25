@@ -13,12 +13,13 @@ function TRIG.magAndDirection(p1x,p1y,p2x,p2y)
   local angle = math.atan(dya/dxa)
 
   if dy >= 0 and dx >= 0 then
-    return mag,angle
+    -- for the dy/dx situtation where dy == 0 and dx == 0
+    if angle ~= angle then return mag,0 else return mag,angle end
   elseif dy >= 0 and dx < 0 then
-    return mag,angle + math.pi
+    return mag,math.pi - angle
   elseif dy < 0 and dx < 0 then
-    return mag,angle + 2*math.pi
-  else return mag,angle + 3/2*math.pi end
+    return mag,angle + math.pi
+  else return mag,2*math.pi - angle end
 end
 
 -- rescales the angle to be between 0 and 2PI
