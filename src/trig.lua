@@ -32,6 +32,35 @@ function TRIG.normalizeAngle(angle)
     while angle > 2*math.pi do angle = angle - 2*math.pi end
     return angle
   end
+  return angle
+end
+
+-- function to best match which angle should be used and then return the defined group. the directions should
+-- be defined in order of pairs and the first value should be the key and the 2nd the value to be returned
+function TRIG.subdivideAndMatch(directions,angle)
+  directions = directions or { }
+
+  -- last angle
+  local la = nil
+  for i=1,#directions,2 do
+    if angle <= directions[i] then
+      if la ~= nil then
+        if angle > directions[la] then
+          local splitPoint = directions[la] + (directions[i] - directions[la]) / 2
+          if angle <= splitPoint then
+            return directions[la+1]
+          else
+            return directions[i+1]
+          end
+        end
+      else
+        return directions[i+1]
+      end
+    else
+      la = i
+    end
+  end
+
 end
 
 return TRIG
